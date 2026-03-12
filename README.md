@@ -6,8 +6,6 @@ Nine types. Three centers. Wing identification. Growth and stress paths.
 Slower and more reflective than MBTI — the Enneagram reaches underneath
 behavior into motivation.
 
-[tmos13.ai](https://tmos13.ai) · [hello@tmos13.ai](mailto:hello@tmos13.ai)
-
 ---
 
 ### The nine types
@@ -18,9 +16,61 @@ behavior into motivation.
 
 ### The deliverable
 
-`enneagram_profile` — core type, wing, tritype, stress and growth
-arrows, integration level, and a honest description of what this
-type looks like at its best and its most difficult.
+`enneagram_profile` — core type, wing, center, stress and growth arrows,
+integration level, honest description of the type at its best and hardest.
+
+---
+
+### Pack structure
+
+```
+enneagram/
+├── README.md
+├── header.yaml
+└── MANIFEST.md
+```
+
+---
+
+### Run it yourself
+
+This is a reference implementation of a TMOS13 pack. Clone the repo,
+load the protocol into any Claude API session, and run it directly.
+
+**Minimum setup:**
+
+```python
+import anthropic
+
+with open("MANIFEST.md", "r") as f:
+    manifest = f.read()
+
+client = anthropic.Anthropic()
+
+messages = []
+
+print("Session started. Type your message.\n")
+
+while True:
+    user_input = input("You: ")
+    messages.append({"role": "user", "content": user_input})
+
+    response = client.messages.create(
+        model="claude-opus-4-5-20251101",
+        max_tokens=1024,
+        system=manifest,
+        messages=messages
+    )
+
+    reply = response.content[0].text
+    messages.append({"role": "assistant", "content": reply})
+    print(f"\nAssistant: {reply}\n")
+```
+
+Requires: `pip install anthropic` and an `ANTHROPIC_API_KEY` environment variable.
+
+For the full TMOS13 engine — pack state management, vault, deliverables,
+multi-cartridge routing — visit [tmos13.ai](https://tmos13.ai).
 
 ---
 
