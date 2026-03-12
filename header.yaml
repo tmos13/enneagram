@@ -1,0 +1,13 @@
+pack_id: enneagram
+name: Enneagram Assessment
+category: personal
+status: active
+version: 1.0.0
+estimated_turns: 18-26
+description: >
+  Conversational Enneagram typing. Nine types, wing identification,
+  stress and growth paths. Reaches underneath behavior into motivation.
+  Slower and more honest than checklist assessments.
+author: TMOS13, LLC
+deliverable: enneagram_profile
+tags: [personal, assessment, Enneagram, personality, psychology, growth]
